@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+/* CSS RESET */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Nunito Sans", serif;
+  padding: 2rm;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* CSS Variables */
+
+:root {
+  /* Font weights */
+  --fw-300: 300;
+  --fw-600: 600;
+  --fw-900: 900;
+
+  /* Font colors */
+  --fc-light-txt: hsl(200, 15%, 8%);
+
+  /* General colors */
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-gray: hsl(0, 0%, 52%);
+
+  /* Backgrounds colors */
+  --bg-light: hsl(0, 0%, 98%);
+  --bg-dark: hsl(207, 26%, 17%);
+
+  /* Item colors */
+  --clr-dark-item: hsl(209, 23%, 22%);
+
+  /* Spacing */
+  --pad-main: 2rem 3rem;
+}
+
+/* General styles */
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.main-background {
+  background-color: var(--bg-light);
+}
+
+/* Navbar */
+
+.navbar {
+  padding: var(--pad-main);
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.navbar.light {
+  background-color: var(--clr-white);
+}
+
+.color-mode-btn {
+  background: none;
+  border: none;
+}
+
+/* Home content */
+
+.home {
+  padding: var(--pad-main);
+}
+
+.filter-box {
+  justify-content: space-between;
+}
+
+.filter-search {
+  padding-inline: 1.5rem;
+  gap: 1.5rem;
+  align-items: center;
+  width: clamp(10rem, 35vw, 100%);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.filter-search > input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.filter-dropdown {
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  background-color: var(--clr-white);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  padding: 1rem;
+  min-width: 8rem;
+  height: 3rem;
+}
+
+.country-items {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
