@@ -146,6 +146,7 @@ h6 {
 }
 
 .filter-dropdown {
+  position: relative;
   justify-content: center;
   align-items: center;
   gap: 3rem;
@@ -155,6 +156,31 @@ h6 {
   padding: 1rem;
   min-width: 8rem;
   height: 3rem;
+  cursor: pointer;
+}
+
+.filter-dropdown-box {
+  display: none;
+  width: 100%;
+  padding: 1rem;
+  position: absolute;
+  left: 0;
+  top: 120%;
+  background: var(--clr-white);
+  border-radius: 10px;
+}
+
+.filter-dropdown-box.active {
+  display: block;
+}
+
+.filter-dropdown-box > ul {
+  padding: 0;
+  list-style: none;
+}
+
+.filter-dropdown-box > ul > * {
+  cursor: pointer;
 }
 
 .country-items {
@@ -165,7 +191,6 @@ h6 {
 .country-item {
   background: var(--clr-white);
   flex-direction: column;
-  justify-content: stretch;
 }
 
 .country-item > img {
