@@ -143,6 +143,19 @@ h6 {
   width: 100%;
   border: none;
   outline: none;
+  background: transparent;
+}
+
+.filter-search > input::placeholder {
+  color: var(--clr-gray);
+}
+
+.filter-search.light-text > input::placeholder {
+  color: var(--fc-light-txt);
+}
+
+.filter-search.dark-text > input::placeholder {
+  color: var(--clr-white);
 }
 
 .filter-dropdown {
@@ -206,6 +219,30 @@ h6 {
   justify-content: space-between; /* Space out the text vertically */
 }
 
-/* .country-item > img {
-  width: 100%;
-} */
+/* Light mode settings */
+
+.light-bg {
+  background: var(--bg-light);
+}
+
+.light-item-bg {
+  background: var(--clr-white);
+}
+
+.light-text {
+  color: var(--fc-light-txt);
+}
+
+/* Dark mode settings*/
+
+.dark-bg {
+  background: var(--bg-dark);
+}
+
+.dark-item-bg {
+  background: var(--clr-dark-item);
+}
+
+.dark-text {
+  color: var(--clr-white);
+}

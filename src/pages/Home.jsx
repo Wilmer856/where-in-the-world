@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { ThemeContext } from "../Context/ThemeProvider";
 
 export default function () {
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [countries, setCountries] = useState(null);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [search, setSearch] = useState("");
@@ -54,12 +56,20 @@ export default function () {
 
   return (
     <>
-      <main className="main-background grid home">
+      <main
+        className={`main-background grid home ${
+          isDarkMode ? "dark-bg" : "light-bg"
+        }`}
+      >
         <div className="flex filter-box">
-          <div className="filter-search flex">
+          <div
+            className={`filter-search flex ${
+              isDarkMode ? "dark-item-bg dark-text" : "light-item-bg light-text"
+            }`}
+          >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
             <input
-              className=""
+              className={`${isDarkMode ? "dark-text" : "light-text"}`}
               type="text"
               placeholder="Search for a country..."
               onChange={(e) => {
@@ -69,13 +79,21 @@ export default function () {
             />
           </div>
           <div
-            className={"filter-dropdown flex"}
+            className={`filter-dropdown flex ${
+              isDarkMode ? "dark-item-bg dark-text" : "light-item-bg light-text"
+            }`}
             onClick={(e) => setDropdownActive(!dropdownActive)}
           >
             <span>Filter by Region</span>
             <FontAwesomeIcon icon={faAngleDown} />
             {dropdownActive && (
-              <div className="filter-dropdown-box active">
+              <div
+                className={`filter-dropdown-box active ${
+                  isDarkMode
+                    ? "dark-item-bg dark-text"
+                    : "light-item-bg light-text"
+                }`}
+              >
                 <ul>
                   {["Africa", "Americas", "Asia", "Europe", "Oceania"].map(
                     (region) => (
@@ -96,9 +114,14 @@ export default function () {
         <div className="grid country-items">
           {filteredCountries.length > 0 ? (
             filteredCountries.map((country, index) => (
-              <div key={index} className="flex country-item">
+              <div
+                key={index}
+                className={`flex country-item ${
+                  isDarkMode ? "dark-item-bg" : "light-item-bg"
+                }`}
+              >
                 <img src={country.flag} alt={`${country.name} flag`} />
-                <div>
+                <div className={`${isDarkMode ? "dark-text" : "light-text"}`}>
                   <h2>{country.name}</h2>
                   <p>Population: {country.population.toLocaleString()}</p>
                   <p>Region: {country.region}</p>
@@ -107,7 +130,9 @@ export default function () {
               </div>
             ))
           ) : (
-            <p>No countries match your search.</p>
+            <p className={`${isDarkMode ? "dark-text" : "light-text"}`}>
+              No countries match your search.
+            </p>
           )}
         </div>
       </main>

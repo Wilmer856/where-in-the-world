@@ -4,14 +4,17 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Home from "./pages/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
+import { ThemeProvider } from "./Context/ThemeProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <StrictMode>
-      <Navbar />
-      <Routes>
-        <Route path="Home" element={<Home />} />
-      </Routes>
+      <ThemeProvider>
+        <Navbar />
+        <Routes>
+          <Route path="Home" element={<Home />} />
+        </Routes>
+      </ThemeProvider>
     </StrictMode>
   </BrowserRouter>
 );
