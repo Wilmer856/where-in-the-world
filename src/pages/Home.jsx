@@ -12,7 +12,7 @@ export default function () {
   useEffect(() => {
     fetch("../../data.json")
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setCountries(data));
   }, []);
   return (
     <>
@@ -32,17 +32,21 @@ export default function () {
           </div>
         </div>
         <div className="grid country-items">
-          <div>
-            {/* <img src={countries[0]["flag"]} alt="" /> */}
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              officia nisi odio ipsa assumenda ad maiores possimus tempora a
-              fugiat?
-            </div>
-          </div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
+          {countries ? (
+            countries.map((country, index) => (
+              <div key={index} className="flex country-item">
+                <img src={country.flag} alt={`${country.name} flag`} />
+                <div className="">
+                  <h2>{country.name}</h2>
+                  <p>Population: {country.population}</p>
+                  <p>Region: {country.region}</p>
+                  <p>Capital: {country.capital}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>Loading countries...</p>
+          )}
         </div>
       </main>
     </>

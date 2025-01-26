@@ -127,6 +127,7 @@ h6 {
 
 .filter-box {
   justify-content: space-between;
+  margin: 2rem 0;
 }
 
 .filter-search {
@@ -158,4 +159,28 @@ h6 {
 
 .country-items {
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 3rem;
 }
+
+.country-item {
+  background: var(--clr-white);
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.country-item > img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.country-item div {
+  padding: 1rem;
+  flex: 1; /* Allow the text container to grow and match the height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out the text vertically */
+}
+
+/* .country-item > img {
+  width: 100%;
+} */
