@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 /* CSS RESET */
 
+html {
+  font-size: 93.75%;
+}
+
 *,
 *::before,
 *::after {
@@ -119,9 +123,19 @@ h6 {
   border: none;
 }
 
+@media (max-width: 650px) {
+
+  .navbar {
+    font-size: 0.85rem;
+    padding: 2rem .5rem;
+  }
+  
+}
+
 /* Home content */
 
 .home {
+  height: 100%;
   padding: var(--pad-main);
 }
 
@@ -213,10 +227,55 @@ h6 {
 
 .country-item div {
   padding: 1rem;
-  flex: 1; /* Allow the text container to grow and match the height */
+  flex: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Space out the text vertically */
+  justify-content: space-between;
+}
+
+@media (max-width: 1024px) {
+
+.country-items {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+}
+
+@media (max-width: 800px) {
+  
+
+  .country-items {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .filter-box {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .filter-search {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+
+  .filter-dropdown {
+    width: fit-content;
+    justify-content: start;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .home {
+    padding: 2rem 1rem;
+  }
+
+  .country-items {
+    grid-template-columns: 1fr;
+    padding: 1rem 2rem;
+  }
+  
 }
 
 /* Light mode settings */
