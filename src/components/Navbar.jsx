@@ -10,7 +10,7 @@ export default function Navbar() {
     <nav
       className={`flex navbar ${isDarkMode ? "dark-item-bg dark-text" : ""}`}
     >
-      <h1>Where in the wold?</h1>
+      <h1>Where in the world?</h1>
       <button
         className={`color-mode-btn ${isDarkMode ? "dark-text" : ""}`}
         onClick={toggleTheme}

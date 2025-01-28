@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Home from "./pages/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { ThemeProvider } from "./Context/ThemeProvider.jsx";
+import Details from "./pages/Details.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -13,6 +14,9 @@ createRoot(document.getElementById("root")).render(
         <Navbar />
         <Routes>
           <Route path="Home" element={<Home />} />
+          <Route path="country">
+            <Route path=":details" element={<Details />}/>
+          </Route>
         </Routes>
       </ThemeProvider>
     </StrictMode>

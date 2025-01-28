@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 /* CSS RESET */
 
+html, body, #root {
+  height: 100%;
+}
+
 html {
   font-size: 93.75%;
 }
@@ -102,7 +106,11 @@ h6 {
 }
 
 .main-background {
+  min-height: 100vh;
   background-color: var(--bg-light);
+  display: flex; /* Use flexbox to align content */
+  flex-direction: column;
+  background-color: inherit; /* Ensure it inherits the background color for light/dark mode */
 }
 
 /* Navbar */
@@ -135,7 +143,7 @@ h6 {
 /* Home content */
 
 .home {
-  height: 100%;
+  flex: 1;
   padding: var(--pad-main);
 }
 
@@ -212,25 +220,45 @@ h6 {
 
 .country-items {
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 3rem;
+  gap: 5rem;
+  flex: 1;
+  display: grid;
+  max-height: fit-content;
+}
+
+.country-items a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .country-item {
-  background: var(--clr-white);
+  display: flex;
   flex-direction: column;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .country-item > img {
   object-fit: cover;
-  height: 100%;
+  height: 200px;
+  width: 100%;
 }
 
 .country-item div {
-  padding: 1rem;
-  flex: 1; 
+  padding: 1rem 1rem 3rem 1rem;
+  /* flex: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
+}
+
+.country-item h2 {
+  font-size: 1.25rem;
+  font-weight: var(--fw-600);
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 1024px) {
@@ -277,6 +305,51 @@ h6 {
   }
   
 }
+
+/* Detail Country Page */
+
+.details-page {
+  padding-inline: 3rem;
+}
+
+.back-btn-container {
+  margin: 4rem 0;
+}
+
+.back-btn {
+  cursor: pointer;
+  width: 8rem;
+  height: 2.5rem;
+}
+
+.back-btn > span {
+  margin-left: .75rem;
+}
+
+.details-container {
+  
+}
+
+.details-container > * {
+  /* flex: 1; */
+}
+
+.details-info {
+  align-items: center;
+  justify-content: center;
+}
+
+.details-container  ul{
+  padding: 0;
+  list-style: none;
+}
+
+.details-container img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
 
 /* Light mode settings */
 
