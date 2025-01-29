@@ -7,14 +7,21 @@ import { ThemeContext } from '../Context/ThemeProvider'
 export default function Details() {
     const { isDarkMode, toggleTheme } = useContext(ThemeContext)
     const location = useLocation()
-    const country = location.state || {}
+    const country = location.state[0] || {}
+    const countries = location.state[1] || []
+
 
     if(!country) {
         return <p>No country data found.</p>
     }
 
+    const getBorders = (country) => {
+        let filtered = countries.filter((con) => country.borders.includes(con["alpha3Code"])).map((con) => con.name)
+        return filtered
+      }
+
   return (
-    <main className={`main-background details-page ${
+    <main className={`details-page ${
         isDarkMode ? "dark-bg" : "light-bg"
       }`}>
         <div className="back-btn-container">
@@ -25,14 +32,14 @@ export default function Details() {
                 </button>
             </Link>
         </div>
-        <div className="flex details-container">
+        <div className="grid details-container">
             <div>
                 <img src={country.flag} alt={country.name} />
             </div>
             <div className="grid details-info">
                 <div className="">
                     <h1>{country.name}</h1>
-                    <div className="flex">
+                    <div className="flex details-list">
                         <ul>
                             <li><span>Native Name: </span>{country.nativeName}</li>
                             <li><span>Population: </span>{country.population}</li>
@@ -46,6 +53,9 @@ export default function Details() {
                             <li><span>Languages: </span>{country.languages.map((lang) => lang.name).join(", ")}</li>
                         </ul>
                     </div>
+                </div>
+                <div>
+                    <span>Border Countries: {getBorders(country).map((con) => <div>{con}</div>)}</span>
                 </div>
             </div>
         </div>

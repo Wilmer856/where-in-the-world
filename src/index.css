@@ -21,7 +21,6 @@ html {
 
 body {
   font-family: "Nunito Sans", serif;
-  padding: 2rm;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -92,7 +91,7 @@ h6 {
   --clr-dark-item: hsl(209, 23%, 22%);
 
   /* Spacing */
-  --pad-main: 2rem 3rem;
+  --pad-main: 2rem 4rem;
 }
 
 /* General styles */
@@ -108,9 +107,9 @@ h6 {
 .main-background {
   min-height: 100vh;
   background-color: var(--bg-light);
-  display: flex; /* Use flexbox to align content */
+  display: flex;
   flex-direction: column;
-  background-color: inherit; /* Ensure it inherits the background color for light/dark mode */
+  background-color: inherit;
 }
 
 /* Navbar */
@@ -309,11 +308,12 @@ h6 {
 /* Detail Country Page */
 
 .details-page {
-  padding-inline: 3rem;
+  min-height: 100vh;
+  padding-inline: 4rem;
 }
 
 .back-btn-container {
-  margin: 4rem 0;
+  padding: 4rem 0;
 }
 
 .back-btn {
@@ -327,11 +327,8 @@ h6 {
 }
 
 .details-container {
-  
-}
-
-.details-container > * {
-  /* flex: 1; */
+  grid-template-rows: minmax(300px, 450px);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .details-info {
@@ -339,15 +336,33 @@ h6 {
   justify-content: center;
 }
 
-.details-container  ul{
+.details-info > div > h1 {
+  font-size: 2rem;
+  margin-bottom: 1.75rem;
+}
+
+.details-list {
+  gap: 3rem;
+}
+
+.details-container ul{
   padding: 0;
   list-style: none;
 }
 
-.details-container img {
+.details-container li{
+  margin-bottom: 0.85rem;
+}
+
+.details-container:first-child {
   width: 100%;
-  height: 350px;
+  height: 100%;
+}
+
+.details-container img {
   object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 

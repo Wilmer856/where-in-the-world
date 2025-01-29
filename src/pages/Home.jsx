@@ -55,6 +55,8 @@ export default function () {
     setDropdownActive((prev) => !prev);
   };
 
+
+
   return (
     <>
       <main
@@ -115,7 +117,7 @@ export default function () {
         <div className="grid country-items">
           {filteredCountries.length > 0 ? (
             filteredCountries.map((country, index) => (
-              <Link to={`../country/${country.name}`} state={country} style={{ textDecoration: 'none' }}>
+              <Link to={`../country/${country.name}`} state={[country, countries]} style={{ textDecoration: 'none' }}>
                 <div
                   key={index}
                   className={`flex country-item ${
