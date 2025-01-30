@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
@@ -6,56 +6,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ThemeContext } from "../Context/ThemeProvider";
 import { Link } from "react-router";
+import { useFilters } from "../Context/FiltersProvider";
 
 export default function () {
-  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
-  const [countries, setCountries] = useState(null);
-  const [filteredCountries, setFilteredCountries] = useState([]);
-  const [search, setSearch] = useState("");
-  const [regionFilter, setRegionFilter] = useState("");
+  const { isDarkMode } = useContext(ThemeContext);
+  const { search, setSearch, regionFilter, setRegionFilter, filteredCountries, countries } = useFilters();
   const [dropdownActive, setDropdownActive] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
-    fetch("../../data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setCountries(data);
-        setFilteredCountries(data);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (countries) {
-      let filtered = countries;
-
-      // Apply region filter
-      if (regionFilter) {
-        filtered = filtered.filter(
-          (country) => country.region === regionFilter
-        );
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownActive(false);
       }
-
-      // Apply search filter
-      if (search) {
-        filtered = filtered.filter((country) =>
-          country.name.toLowerCase().startsWith(search.toLowerCase())
-        );
-      }
-
-      setFilteredCountries(filtered);
     }
-  }, [search, regionFilter, countries]);
-
-  const handleRegionClick = (region) => {
-    setRegionFilter(region);
-    setDropdownActive(false);
-  };
-
-  const toggleDropdown = () => {
-    setDropdownActive((prev) => !prev);
-  };
-
-
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -82,36 +51,34 @@ export default function () {
             />
           </div>
           <div
-            className={`filter-dropdown flex ${
-              isDarkMode ? "dark-item-bg dark-text" : "light-item-bg light-text"
-            }`}
-            onClick={(e) => setDropdownActive(!dropdownActive)}
-          >
+          className={`filter-dropdown flex ${isDarkMode ? "dark-item-bg dark-text" : "light-item-bg light-text"}`}
+          onClick={() => setDropdownActive((prev) => !prev)}
+          ref={dropdownRef}
+        >
             <span>Filter by Region</span>
             <FontAwesomeIcon icon={faAngleDown} />
-            {dropdownActive && (
-              <div
-                className={`filter-dropdown-box active ${
-                  isDarkMode
-                    ? "dark-item-bg dark-text"
-                    : "light-item-bg light-text"
-                }`}
-              >
-                <ul>
-                  {["Africa", "Americas", "Asia", "Europe", "Oceania"].map(
-                    (region) => (
-                      <li
-                        key={region}
-                        onClick={() => handleRegionClick(region)}
-                      >
-                        {region}
-                      </li>
-                    )
-                  )}
-                  <li onClick={() => handleRegionClick("")}>All Regions</li>
-                </ul>
+            {dropdownActive && <div
+                  className={`filter-dropdown-box active ${
+                    isDarkMode
+                      ? "dark-item-bg dark-text"
+                      : "light-item-bg light-text"
+                  }`}
+                  >
+                  <ul>
+                    {["Africa", "Americas", "Asia", "Europe", "Oceania"].map(
+                      (region) => (
+                        <li
+                          key={region}
+                          onClick={() => setRegionFilter(region)}
+                        >
+                          {region}
+                        </li>
+                      )
+                    )}
+                    <li onClick={() => setRegionFilter("")}>All Regions</li>
+                  </ul>
               </div>
-            )}
+            }
           </div>
         </div>
         <div className="grid country-items">

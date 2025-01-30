@@ -59,7 +59,7 @@ export default function Details() {
                     </div>
                 </div>
                 {country.hasOwnProperty("borders") && 
-                <div>
+                <div className="border-container">
                     <span className="list-data-heading">Border Countries: </span>
                     <div className="border-list flex">
                     {getBorders(country).map((con,i) => <div key={i} className="shadow-btn">{con}</div>)}

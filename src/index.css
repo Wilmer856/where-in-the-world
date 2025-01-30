@@ -374,9 +374,12 @@ h6 {
 }
 
 .details-container img {
-  object-fit: cover;
+  object-fit: contain;
   height: 100%;
-  width: 100%;
+}
+
+.border-container {
+  margin-top: 3rem;
 }
 
 .border-list {
@@ -385,7 +388,7 @@ h6 {
 }
 
  .border-list > div {
-  flex: 1;
+  height: min-content;
   text-align: center;
   padding: 0.25rem 1rem;
  }
@@ -395,6 +398,41 @@ h6 {
   border: none;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+@media (max-width: 1000px) {
+
+  .details-container {
+    grid-template-columns: 100%;
+  }
+
+  .details-info {
+    justify-content: start;
+  }
+
+  .details-list {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .details-page {
+    padding: 2rem 1rem;
+  }
+
+  .details-container {
+    grid-template-rows: min-content;
+  }
+
+  .back-btn-container {
+    padding: 2rem 0;
+  }
+
+  .border-list {
+    flex-wrap: wrap;
+  }
+  
 }
 
 /* Light mode settings */

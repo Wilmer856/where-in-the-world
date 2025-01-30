@@ -6,18 +6,21 @@ import Home from "./pages/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { ThemeProvider } from "./Context/ThemeProvider.jsx";
 import Details from "./pages/Details.jsx";
+import { FiltersProvider } from "./Context/FiltersProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <StrictMode>
       <ThemeProvider>
-        <Navbar />
-        <Routes>
-          <Route path="Home" element={<Home />} />
-          <Route path="country">
-            <Route path=":details" element={<Details />}/>
-          </Route>
-        </Routes>
+        <FiltersProvider>
+          <Navbar />
+          <Routes>
+            <Route path="Home" element={<Home />} />
+            <Route path="country">
+              <Route path=":details" element={<Details />}/>
+            </Route>
+          </Routes>
+        </FiltersProvider>
       </ThemeProvider>
     </StrictMode>
   </BrowserRouter>
