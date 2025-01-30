@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
@@ -9,6 +9,10 @@ export default function Details() {
     const location = useLocation()
     const country = location.state[0] || {}
     const countries = location.state[1] || []
+
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [location])
 
 
     if(!country) {
@@ -22,11 +26,11 @@ export default function Details() {
 
   return (
     <main className={`details-page ${
-        isDarkMode ? "dark-bg" : "light-bg"
+        isDarkMode ? "dark-bg dark-text" : "light-bg light-text"
       }`}>
         <div className="back-btn-container">
             <Link to="../../Home" style={{textDecoration: 'none'}}>
-                <button className="back-btn">
+                <button className={`back-btn shadow-btn ${isDarkMode ? "dark-item-bg dark-text" : "light-item-bg light-text"}`}>
                     <FontAwesomeIcon icon={faArrowLeft}/>
                     <span>Back</span>
                 </button>
@@ -37,12 +41,12 @@ export default function Details() {
                 <img src={country.flag} alt={country.name} />
             </div>
             <div className="grid details-info">
-                <div className="">
-                    <h1>{country.name}</h1>
+                <div>
+                    <h1 className="country-data-heading">{country.name}</h1>
                     <div className="flex details-list">
                         <ul>
                             <li><span>Native Name: </span>{country.nativeName}</li>
-                            <li><span>Population: </span>{country.population}</li>
+                            <li><span>Population: </span>{country.population.toLocaleString()}</li>
                             <li><span>Region: </span>{country.region}</li>
                             <li><span>Sub Region: </span>{country.subregion}</li>
                             <li><span>Capital: </span>{country.capital}</li>
@@ -54,9 +58,14 @@ export default function Details() {
                         </ul>
                     </div>
                 </div>
+                {country.hasOwnProperty("borders") && 
                 <div>
-                    <span>Border Countries: {getBorders(country).map((con) => <div>{con}</div>)}</span>
+                    <span className="list-data-heading">Border Countries: </span>
+                    <div className="border-list flex">
+                    {getBorders(country).map((con,i) => <div key={i} className="shadow-btn">{con}</div>)}
+                    </div>
                 </div>
+                }
             </div>
         </div>
     </main>

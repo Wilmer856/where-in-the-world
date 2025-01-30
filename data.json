@@ -1693,7 +1693,7 @@
     "independent": true
   },
   {
-    "name": "Bolivia (Plurinational State of)",
+    "name": "Bolivia",
     "topLevelDomain": [".bo"],
     "alpha2Code": "BO",
     "alpha3Code": "BOL",
@@ -7230,7 +7230,7 @@
     "independent": true
   },
   {
-    "name": "Iran (Islamic Republic of)",
+    "name": "Iran",
     "topLevelDomain": [".ir"],
     "alpha2Code": "IR",
     "alpha3Code": "IRN",

@@ -127,9 +127,9 @@ export default function () {
                   <img src={country.flag} alt={`${country.name} flag`} />
                   <div className={`${isDarkMode ? "dark-text" : "light-text"}`}>
                     <h2>{country.name}</h2>
-                    <p>Population: {country.population.toLocaleString()}</p>
-                    <p>Region: {country.region}</p>
-                    <p>Capital: {country.capital}</p>
+                    <p><span>Population: </span>{country.population.toLocaleString()}</p>
+                    <p><span>Region: </span>{country.region}</p>
+                    <p><span>Capital: </span>{country.capital}</p>
                   </div>
                 </div>
               </Link>
