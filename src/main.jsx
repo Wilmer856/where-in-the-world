@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import Home from "./pages/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { ThemeProvider } from "./Context/ThemeProvider.jsx";
@@ -15,10 +15,9 @@ createRoot(document.getElementById("root")).render(
         <FiltersProvider>
           <Navbar />
           <Routes>
-            <Route path="Home" element={<Home />} />
-            <Route path="country">
-              <Route path=":details" element={<Details />}/>
-            </Route>
+            <Route index path="/" element={<Navigate to={"/home"} replace/>}/> 
+            <Route path="/home" element={<Home />} />
+            <Route path="/country/:name" element={<Details />} />
           </Routes>
         </FiltersProvider>
       </ThemeProvider>
