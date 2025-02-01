@@ -39,6 +39,12 @@ The **Where in the World** application allows users to:
 
 ---
 
+## Visit Deployed Site
+
+[Visit here](https://wilmer856.github.io/where-in-the-world)
+
+---
+
 ## Installation & Setup
 
 ### **Clone the Repository**
