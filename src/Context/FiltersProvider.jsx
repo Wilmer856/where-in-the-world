@@ -4,12 +4,14 @@ const FiltersContext = createContext();
 
 export function FiltersProvider({ children }) {
   const [search, setSearch] = useState(localStorage.getItem("search") || "");
-  const [regionFilter, setRegionFilter] = useState(localStorage.getItem("regionFilter") || "");
+  const [regionFilter, setRegionFilter] = useState(
+    localStorage.getItem("regionFilter") || ""
+  );
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    fetch("../../data.json")
+    fetch("/data.json")
       .then((res) => res.json())
       .then((data) => {
         setCountries(data);
@@ -45,7 +47,14 @@ export function FiltersProvider({ children }) {
 
   return (
     <FiltersContext.Provider
-      value={{ search, setSearch, regionFilter, setRegionFilter, filteredCountries, countries }}
+      value={{
+        search,
+        setSearch,
+        regionFilter,
+        setRegionFilter,
+        filteredCountries,
+        countries,
+      }}
     >
       {children}
     </FiltersContext.Provider>
