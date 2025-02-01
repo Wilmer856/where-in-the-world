@@ -2,7 +2,7 @@
   "name": "country-info-master",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://wilmer856.github.io/where-in-the-world/home",
+  "homepage": "https://wilmer856.github.io/where-in-the-world",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
