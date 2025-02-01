@@ -15,7 +15,7 @@ import Details from "./pages/Details.jsx";
 import { FiltersProvider } from "./Context/FiltersProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <HashRouter>
+  <HashRouter basename="/where-in-the-world">
     <StrictMode>
       <ThemeProvider>
         <FiltersProvider>
